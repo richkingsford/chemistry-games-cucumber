@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Carbon Alchemist - Chemistry Games</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="game-title">THE CARBON ALCHEMIST 💎</div>
+        <div class="hud-stats">
+            <div class="stat-box">
+                <div class="stat-label">CO2 Captured</div>
+                <div class="stat-value" id="co2-display">0 kg</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Funds</div>
+                <div class="stat-value" id="money-display">$0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Global Temp</div>
+                <div class="stat-value" id="temp-display">+1.5°C</div>
+            </div>
+        </div>
+        <a href="../index.html" class="exit-btn">EXIT</a>
+    </header>
+
+    <main>
+        <!-- Left Panel: Stats & Info -->
+        <div class="panel-left">
+            <div class="info-card">
+                <div class="card-header">Mission Control</div>
+                <div class="card-body">
+                    <p id="mission-text">Welcome, Alchemist. Your goal is to scrub CO2 from the atmosphere and turn it
+                        into profit. Start by manually capturing air.</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="card-header">Did You Know?</div>
+                <div class="card-body">
+                    <p id="fact-text">Direct Air Capture (DAC) machines act like artificial trees, filtering CO2
+                        directly from the sky.</p>
+                    <a href="#" id="learn-more-link" target="_blank">More about DAC</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel: The Reactor -->
+        <div class="panel-center">
+            <div id="reactor-container">
+                <div id="co2-cloud">☁️</div>
+                <div id="reactor-core"></div>
+                <div id="diamond-output"></div>
+            </div>
+            <button id="capture-btn" class="main-action-btn">CAPTURE CO2</button>
+            <button id="convert-btn" class="secondary-action-btn" disabled>PRESS TO DIAMOND ($100)</button>
+        </div>
+
+        <!-- Right Panel: Upgrades -->
+        <div class="panel-right">
+            <div class="card-header">TECHNOLOGY</div>
+            <div id="upgrades-list">
+                <!-- Upgrades injected here -->
+            </div>
+        </div>
+    </main>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
