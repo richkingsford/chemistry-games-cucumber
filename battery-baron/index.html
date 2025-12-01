@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battery Baron - Chemistry Games</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="game-title">BATTERY BARON 🔋</div>
+        <div class="hud-stats">
+            <div class="stat-box">
+                <div class="stat-label">Funds</div>
+                <div class="stat-value" id="funds">$1,000</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Reputation</div>
+                <div class="stat-value" id="reputation">50%</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Time</div>
+                <div class="stat-value" id="timer">03:00</div>
+            </div>
+        </div>
+        <a href="../index.html"
+            style="color: #fff; text-decoration: none; font-size: 0.8rem; border: 1px solid #555; padding: 5px 10px; border-radius: 4px;">EXIT</a>
+    </header>
+
+    <main>
+        <!-- Left: Contract -->
+        <div class="panel-left">
+            <div id="contract-container" class="contract-card">
+                <div class="contract-header">ACTIVE CONTRACT</div>
+                <div id="contract-desc">Loading market data...</div>
+                <div class="contract-reqs" id="contract-reqs">
+                    <!-- Requirements injected here -->
+                </div>
+            </div>
+
+            <!-- Educational Assistant -->
+            <div style="flex:1; display:flex; align-items:flex-end;">
+                <div id="assistant-display" class="contract-card" style="width:100%; border-color: var(--neon-yellow);">
+                    <div style="color:var(--neon-yellow); font-size:0.8rem; margin-bottom:0.5rem;">LAB ASSISTANT</div>
+                    <div id="assistant-text">Welcome, Baron! Select a contract to begin manufacturing.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center: Workbench -->
+        <div class="panel-center" id="workbench">
+            <div class="battery-terminal"></div>
+            <div class="battery-preview">
+                <div class="battery-layer layer-cathode" id="preview-cathode">Cathode</div>
+                <div class="battery-layer layer-electrolyte" id="preview-electrolyte">Electrolyte</div>
+                <div class="battery-layer layer-anode" id="preview-anode">Anode</div>
+            </div>
+
+            <div class="action-area">
+                <button id="build-btn" class="main-btn" disabled>MANUFACTURE</button>
+            </div>
+        </div>
+
+        <!-- Right: Components -->
+        <div class="panel-right">
+            <div class="component-category">
+                <div class="category-title">CATHODE (Positive)</div>
+                <div id="list-cathode"></div>
+            </div>
+            <div class="component-category">
+                <div class="category-title">ELECTROLYTE (Medium)</div>
+                <div id="list-electrolyte"></div>
+            </div>
+            <div class="component-category">
+                <div class="category-title">ANODE (Negative)</div>
+                <div id="list-anode"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Educational Modal -->
+    <div id="edu-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h2 class="modal-title" id="modal-title">Concept</h2>
+            <div id="modal-body">Description...</div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
