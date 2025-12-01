@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Scent Designer - Chemistry Games</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="game-title">THE SCENT DESIGNER</div>
+        <div class="hud-stats">
+            <div class="stat-box">
+                <div class="stat-label">Brand Value</div>
+                <div class="stat-value" id="money-display">$0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Reputation</div>
+                <div class="stat-value" id="rep-display">Unknown</div>
+            </div>
+        </div>
+        <a href="../index.html" class="exit-btn">EXIT</a>
+    </header>
+
+    <main>
+        <!-- Left Panel: Scent Profile -->
+        <div class="panel-left">
+            <div class="panel-header">Olfactory Profile</div>
+            <div class="profile-container">
+                <div class="note-section">
+                    <div class="note-label">Top Notes (Head)</div>
+                    <div class="note-bar-container">
+                        <div class="note-bar" id="bar-top" style="width: 0%"></div>
+                    </div>
+                    <div class="note-desc" id="desc-top">Empty</div>
+                </div>
+                <div class="note-section">
+                    <div class="note-label">Middle Notes (Heart)</div>
+                    <div class="note-bar-container">
+                        <div class="note-bar" id="bar-mid" style="width: 0%"></div>
+                    </div>
+                    <div class="note-desc" id="desc-mid">Empty</div>
+                </div>
+                <div class="note-section">
+                    <div class="note-label">Base Notes (Dry Down)</div>
+                    <div class="note-bar-container">
+                        <div class="note-bar" id="bar-base" style="width: 0%"></div>
+                    </div>
+                    <div class="note-desc" id="desc-base">Empty</div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="card-header">Chemistry Fact</div>
+                <div class="card-body">
+                    <p id="fact-text">Esters are chemical compounds derived from an acid and an alcohol, often
+                        responsible for fruity smells.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel: The Master Bottle -->
+        <div class="panel-center">
+            <div id="bottle-container">
+                <!-- The background image provides the bottle, we overlay effects -->
+                <div id="vapor-effect"></div>
+                <div id="mix-name">"L'Eau de Rien"</div>
+            </div>
+
+            <div class="controls-area">
+                <button id="mix-btn" class="main-action-btn" disabled>SYNTHESIZE BLEND</button>
+                <button id="reset-btn" class="secondary-action-btn">CLEAR VESSEL</button>
+            </div>
+            <div id="feedback-msg">Select ingredients to begin...</div>
+        </div>
+
+        <!-- Right Panel: Chemical Rack -->
+        <div class="panel-right">
+            <div class="panel-header">Chemical Rack</div>
+            <div class="chem-category">
+                <div class="cat-title">Esters (Fruity/Sweet)</div>
+                <div id="list-esters"></div>
+            </div>
+            <div class="chem-category">
+                <div class="cat-title">Aldehydes (Fresh/Waxy)</div>
+                <div id="list-aldehydes"></div>
+            </div>
+            <div class="chem-category">
+                <div class="cat-title">Terpenes (Woody/Citrus)</div>
+                <div id="list-terpenes"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Review Modal -->
+    <div id="review-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Market Reception</h2>
+            <div id="review-stars">⭐⭐⭐⭐⭐</div>
+            <p id="review-text">"A stunning masterpiece of olfactory art."</p>
+            <div id="review-reward">Brand Value +$500</div>
+            <button id="continue-btn" class="main-action-btn">CONTINUE</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>

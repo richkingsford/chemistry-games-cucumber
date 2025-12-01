@@ -1,0 +1,397 @@
+:root {
+    --bg-dark: #1a1518;
+    --gold: #d4af37;
+    --rose-gold: #b76e79;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: 1px solid rgba(212, 175, 55, 0.3);
+    --text-main: #f0e6d2;
+    --font-header: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-dark);
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0));
+    z-index: 10;
+}
+
+.game-title {
+    font-family: var(--font-header);
+    font-size: 2.5rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-style: italic;
+}
+
+.hud-stats {
+    display: flex;
+    gap: 3rem;
+}
+
+.stat-box {
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--rose-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    color: var(--gold);
+    font-family: var(--font-header);
+}
+
+.exit-btn {
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+
+.exit-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    padding: 2rem;
+    gap: 2rem;
+    overflow: hidden;
+}
+
+.panel-left,
+.panel-right {
+    flex: 1;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: var(--glass-border);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-width: 300px;
+    border-radius: 4px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.panel-header {
+    font-family: var(--font-header);
+    color: var(--gold);
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* Profile Bars */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.note-section {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.5rem;
+    border-radius: 2px;
+}
+
+.note-label {
+    font-size: 1rem;
+    color: #aaa;
+    margin-bottom: 0.3rem;
+}
+
+.note-bar-container {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.note-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rose-gold), var(--gold));
+    transition: width 0.5s ease-out;
+}
+
+.note-desc {
+    font-size: 1rem;
+    color: #fff;
+    margin-top: 0.3rem;
+    font-style: italic;
+}
+
+/* Center Bottle */
+.panel-center {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+#bottle-container {
+    flex: 1;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#mix-name {
+    font-family: var(--font-header);
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    margin-top: 2rem;
+    opacity: 0.8;
+}
+
+#vapor-effect {
+    position: absolute;
+    top: 20%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+    opacity: 0;
+    transition: opacity 1s;
+    pointer-events: none;
+}
+
+.controls-area {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.main-action-btn {
+    background: linear-gradient(45deg, var(--gold), #f0e6d2);
+    border: none;
+    padding: 1rem 3rem;
+    font-family: var(--font-header);
+    font-size: 1.2rem;
+    color: #1a1518;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.main-action-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+}
+
+.main-action-btn:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid #555;
+    color: #aaa;
+    box-shadow: none;
+}
+
+.secondary-action-btn {
+    background: linear-gradient(to bottom, rgba(40, 40, 40, 0.9), rgba(10, 10, 10, 1));
+    border: 1px solid var(--gold);
+    border-radius: 30px;
+    color: var(--gold);
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    font-family: var(--font-header);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+}
+
+.secondary-action-btn:hover {
+    background: linear-gradient(to bottom, var(--gold), #b8860b);
+    color: #000;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    transform: translateY(-2px);
+    border-color: #fff;
+}
+
+#feedback-msg {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--text-main);
+    font-family: var(--font-header);
+    font-size: 1.2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
+    z-index: 20;
+    pointer-events: none;
+}
+
+/* Chemical Rack */
+.panel-right {
+    overflow-y: auto;
+}
+
+.chem-category {
+    margin-bottom: 1.5rem;
+}
+
+.cat-title {
+    font-size: 1rem;
+    color: var(--gold);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.2rem;
+}
+
+.chem-btn {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    color: #ddd;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+}
+
+.chem-btn:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold);
+    color: #fff;
+}
+
+.chem-btn.selected {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: var(--gold);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+}
+
+.chem-cost {
+    color: var(--rose-gold);
+    font-size: 1rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: #1a1518;
+    border: 1px solid var(--gold);
+    padding: 3rem;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
+    position: relative;
+}
+
+.modal-title {
+    font-family: var(--font-header);
+    color: var(--gold);
+    margin-top: 0;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+#review-stars {
+    font-size: 2rem;
+    margin: 1rem 0;
+    color: var(--gold);
+}
+
+#review-text {
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+#review-reward {
+    color: var(--rose-gold);
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+/* Info Card */
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-left: 2px solid var(--gold);
+    margin-top: auto;
+}
+
+.card-header {
+    color: var(--gold);
+    font-family: var(--font-header);
+    margin-bottom: 0.5rem;
+}
+
+.card-body {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
