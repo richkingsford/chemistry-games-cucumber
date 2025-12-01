@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultured Chef - Chemistry Games</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="game-title">CULTURED CHEF 🧪</div>
+        <div class="hud-stats">
+            <div class="stat-box">
+                <div class="stat-label">Reputation</div>
+                <div class="stat-value" id="reputation">50%</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Time</div>
+                <div class="stat-value" id="timer">03:00</div>
+            </div>
+        </div>
+        <a href="../index.html"
+            style="color: #fff; text-decoration: none; font-size: 0.8rem; border: 1px solid #555; padding: 5px 10px; border-radius: 4px;">EXIT</a>
+    </header>
+
+    <main>
+        <!-- Left: Order & Info -->
+        <div class="panel-left">
+            <div id="order-container" class="order-card">
+                <div class="order-header">CURRENT ORDER</div>
+                <div id="order-desc">Loading...</div>
+                <div class="order-reqs" id="order-reqs"></div>
+            </div>
+
+            <!-- Hint Box -->
+            <div id="hint-box"
+                style="background: rgba(0, 0, 0, 0.3); padding: 0.5rem; border-radius: 4px; border: 1px solid var(--bio-green); margin-bottom: 1rem; font-size: 0.8rem; color: #fff; text-align: center;">
+                HINT: <span id="next-step-text">Read the order...</span>
+            </div>
+
+            <div style="flex:1; display:flex; align-items:flex-end;">
+                <div id="assistant-display" class="order-card" style="width:100%; border-color: var(--bio-blue);">
+                    <div style="font-size:0.8rem; margin-bottom:0.5rem; color: var(--bio-green);">HEAD CHEF</div>
+                    <div id="assistant-text">Welcome to the bio-kitchen. Don't kill the microbes!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center: Fermentation Chamber -->
+        <div class="panel-center" id="chamber">
+            <div class="jar-container">
+                <div class="jar-liquid" id="jar-liquid"></div>
+                <div id="jar-label" class="jar-label">Empty</div>
+            </div>
+
+            <div class="controls-area">
+                <div class="temp-control">
+                    <label>INCUBATION TEMP</label>
+                    <input type="range" id="temp-slider" min="0" max="100" value="20">
+                    <div class="temp-display"><span id="temp-val">20</span>°C</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1rem;">
+                <button id="ferment-btn" class="main-btn" disabled>FERMENT</button>
+            </div>
+        </div>
+
+        <!-- Right: Ingredients -->
+        <div class="panel-right">
+            <div class="ingredient-category">
+                <div class="category-title">SUBSTRATE (Base)</div>
+                <div id="list-substrate"></div>
+            </div>
+            <div class="ingredient-category">
+                <div class="category-title">MICROBE (Starter)</div>
+                <div id="list-microbe"></div>
+            </div>
+            <div class="ingredient-category">
+                <div class="category-title">CONDITION (Additive)</div>
+                <div id="list-additive"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Educational Modal -->
+    <div id="edu-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h2 class="modal-title" id="modal-title">Concept</h2>
+            <div id="modal-body">Description...</div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
