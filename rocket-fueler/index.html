@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rocket Fueler - Chemistry Games</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="game-title">THE ROCKET FUELER</div>
+        <div class="hud-stats">
+            <div class="stat-box">
+                <div class="stat-label">Thrust</div>
+                <div class="stat-value" id="thrust-display">0 kN</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Velocity</div>
+                <div class="stat-value" id="velocity-display">0 m/s</div>
+            </div>
+        </div>
+        <a href="../index.html" class="exit-btn">ABORT</a>
+    </header>
+
+    <main>
+        <!-- Left Panel: Fuel Components -->
+        <div class="panel-left">
+            <div class="panel-header">Propellant Mix</div>
+            <div class="component-group">
+                <div class="component-label">Oxidizer (Liquid Oxygen)</div>
+                <div class="slider-container">
+                    <input type="range" min="0" max="100" value="50" class="slider" id="oxidizer-slider">
+                    <span class="slider-value" id="oxidizer-val">50%</span>
+                </div>
+            </div>
+            <div class="component-group">
+                <div class="component-label">Fuel (RP-1 Kerosene)</div>
+                <div class="slider-container">
+                    <input type="range" min="0" max="100" value="50" class="slider" id="fuel-slider">
+                    <span class="slider-value" id="fuel-val">50%</span>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="card-header">Combustion Fact</div>
+                <div class="card-body">
+                    <p id="fact-text">Stoichiometric ratio ensures complete combustion for maximum efficiency.</p>
+                    <a href="https://en.wikipedia.org/wiki/Rocket_propellant" target="_blank" class="learn-link">Learn
+                        More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel: Launch Status (Telemetry) - Swapped -->
+        <div class="panel-center">
+            <div class="panel-header">Telemetry</div>
+            <div class="telemetry-grid">
+                <div class="telemetry-item">
+                    <div class="t-label">Altitude</div>
+                    <div class="t-value" id="alt-display">0 km</div>
+                </div>
+                <div class="telemetry-item">
+                    <div class="t-label">Status</div>
+                    <div class="t-value" id="status-display">Grounded</div>
+                </div>
+            </div>
+            <div class="log-console" id="mission-log">
+                <div class="log-line">System initialized...</div>
+                <div class="log-line">Awaiting ignition sequence...</div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Engine - Swapped -->
+        <div class="panel-right">
+            <div id="engine-container">
+                <div class="rocket-body">
+                    <div class="nozzle"></div>
+                    <div class="flame" id="flame"></div>
+                </div>
+            </div>
+            <div class="controls-area">
+                <button id="ignite-btn" class="main-action-btn">IGNITE ENGINE</button>
+                <button id="reset-btn" class="secondary-action-btn">RESET</button>
+            </div>
+            <div id="feedback-msg">Adjust mixture and ignite...</div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Orbit Achieved!</h2>
+            <div id="result-icon">🚀</div>
+            <p id="result-text">Perfect combustion ratio achieved.</p>
+            <div id="result-reward">Efficiency: 98%</div>
+            <button id="continue-btn" class="main-action-btn">NEXT MISSION</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>

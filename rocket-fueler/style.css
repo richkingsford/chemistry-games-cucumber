@@ -1,0 +1,472 @@
+:root {
+    --bg-dark: #050010;
+    --neon-purple: #b026ff;
+    --neon-orange: #ff9900;
+    --glass-bg: rgba(20, 0, 40, 0.8);
+    --glass-border: 1px solid rgba(176, 38, 255, 0.3);
+    --text-main: #e0d0ff;
+    --font-header: 'Orbitron', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-dark);
+    background-image: url('bg.png');
+    background-size: cover;
+    background-position: center;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+    z-index: 10;
+}
+
+.game-title {
+    font-family: var(--font-header);
+    font-size: 2.5rem;
+    color: var(--neon-orange);
+    text-shadow: 0 0 10px var(--neon-purple);
+    letter-spacing: 2px;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.hud-stats {
+    display: flex;
+    gap: 3rem;
+}
+
+.stat-box {
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--neon-purple);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    color: #fff;
+    font-family: var(--font-header);
+    text-shadow: 0 0 5px var(--neon-orange);
+}
+
+.exit-btn {
+    color: #ff3333;
+    text-decoration: none;
+    border: 1px solid #ff3333;
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+    font-family: var(--font-header);
+}
+
+.exit-btn:hover {
+    background: #ff3333;
+    color: #000;
+    box-shadow: 0 0 15px #ff3333;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    padding: 2rem;
+    gap: 2rem;
+    overflow: hidden;
+}
+
+/* Left Panel (Controls) & Center Panel (Telemetry) share glass style */
+.panel-left,
+.panel-center {
+    flex: 1;
+    background: var(--glass-bg);
+    backdrop-filter: blur(5px);
+    border: var(--glass-border);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-width: 300px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(176, 38, 255, 0.2);
+}
+
+.panel-header {
+    font-family: var(--font-header);
+    color: var(--neon-purple);
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgba(176, 38, 255, 0.3);
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* Specifics for Center Panel (Telemetry) */
+.panel-center {
+    max-height: 50vh;
+    /* Half height */
+    margin-top: auto;
+    /* Push to bottom */
+}
+
+/* Right Panel (Rocket Engine) */
+.panel-right {
+    flex: 2;
+    /* Take up more space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Sliders */
+.component-group {
+    margin-bottom: 1rem;
+}
+
+.component-label {
+    color: var(--neon-orange);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.slider {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 5px;
+    background: #333;
+    outline: none;
+    border-radius: 5px;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--neon-purple);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--neon-purple);
+}
+
+.slider-value {
+    font-family: var(--font-header);
+    color: #fff;
+    width: 50px;
+    text-align: right;
+}
+
+/* Info Card */
+.info-card {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border: 1px solid var(--neon-orange);
+    margin-top: auto;
+}
+
+.card-header {
+    color: var(--neon-orange);
+    font-family: var(--font-header);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-body {
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.learn-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--neon-purple);
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.learn-link:hover {
+    color: #fff;
+    text-shadow: 0 0 5px var(--neon-purple);
+}
+
+#engine-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.rocket-body {
+    width: 100px;
+    height: 200px;
+    background: linear-gradient(90deg, #333, #555, #333);
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    box-shadow: inset 0 0 20px #000;
+}
+
+.nozzle {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 40px solid #222;
+}
+
+.flame {
+    position: absolute;
+    bottom: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 0;
+    background: linear-gradient(to bottom, #fff, var(--neon-orange), var(--neon-purple), transparent);
+    border-radius: 50% 50% 20% 20%;
+    filter: blur(5px);
+    opacity: 0.8;
+    transition: height 0.2s;
+}
+
+.flame.active {
+    height: 120px;
+    animation: flicker 0.1s infinite alternate;
+}
+
+@keyframes flicker {
+    from {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.9;
+    }
+
+    to {
+        transform: translateX(-50%) scale(1.1);
+        opacity: 0.7;
+    }
+}
+
+.controls-area {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.main-action-btn {
+    background: var(--neon-orange);
+    color: #000;
+    border: none;
+    padding: 1rem 2rem;
+    font-family: var(--font-header);
+    font-size: 1.2rem;
+    cursor: pointer;
+    clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
+    transition: all 0.2s;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.main-action-btn:hover {
+    background: #fff;
+    box-shadow: 0 0 20px var(--neon-orange);
+    transform: scale(1.05);
+}
+
+.secondary-action-btn {
+    background: transparent;
+    border: 1px solid var(--neon-purple);
+    color: var(--neon-purple);
+    padding: 1rem 2rem;
+    font-family: var(--font-header);
+    cursor: pointer;
+    clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
+    transition: all 0.2s;
+}
+
+.secondary-action-btn:hover {
+    background: rgba(176, 38, 255, 0.2);
+    box-shadow: 0 0 15px var(--neon-purple);
+}
+
+#feedback-msg {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.8rem 2rem;
+    border: 1px solid var(--neon-purple);
+    color: #fff;
+    font-family: var(--font-header);
+    text-align: center;
+    min-width: 300px;
+}
+
+/* Right Panel */
+.telemetry-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.telemetry-item {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.t-label {
+    font-size: 0.7rem;
+    color: #aaa;
+    margin-bottom: 0.3rem;
+}
+
+.t-value {
+    font-size: 1.2rem;
+    color: var(--neon-orange);
+}
+
+.log-console {
+    flex: 1;
+    background: #000;
+    border: 1px solid #333;
+    padding: 0.5rem;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--neon-purple);
+    overflow-y: auto;
+}
+
+.log-line {
+    margin-bottom: 0.2rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: #100020;
+    border: 2px solid var(--neon-purple);
+    padding: 3rem;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 0 50px rgba(176, 38, 255, 0.3);
+    position: relative;
+}
+
+.modal-title {
+    font-family: var(--font-header);
+    color: var(--neon-orange);
+    margin-top: 0;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+#result-icon {
+    font-size: 4rem;
+    margin: 1rem 0;
+}
+
+#result-reward {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+.shake {
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}

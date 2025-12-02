@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Nano-Weaver - Chemistry Games</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="game-title">NANO-WEAVER</div>
+        <div class="hud-stats">
+            <div class="stat-box">
+                <div class="stat-label">Material Integrity</div>
+                <div class="stat-value" id="integrity-display">0%</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Tensile Strength</div>
+                <div class="stat-value" id="strength-display">0 GPa</div>
+            </div>
+        </div>
+        <a href="../index.html" class="exit-btn">ABORT SIMULATION</a>
+    </header>
+
+    <!-- Application Context Blurbs -->
+    <div class="app-context" id="ctx-main">
+        <div class="ctx-line"></div>
+        <div class="ctx-text">
+            <strong>ACTIVE PROJECTS</strong><br>
+            Skyhook Tether: <span class="blink">PENDING</span><br>
+            Aegis Armor: <span class="blink">PROTOTYPING</span>
+        </div>
+    </div>
+
+    <main>
+        <!-- Left Panel: Lattice Configuration -->
+        <div class="panel-left">
+            <div class="panel-header">Lattice Config</div>
+            <div class="config-options">
+                <button class="config-btn selected" data-type="hexagonal">
+                    <span class="icon">⬡</span> Hexagonal
+                </button>
+                <button class="config-btn" data-type="pentagonal">
+                    <span class="icon">⬠</span> Pentagonal
+                </button>
+                <button class="config-btn" data-type="heptagonal">
+                    <span class="icon">⬠</span> Heptagonal
+                </button>
+            </div>
+            <div class="info-card">
+                <div class="card-header">Material Fact</div>
+                <div class="card-body">
+                    <p id="fact-text">Graphene is a single layer of carbon atoms arranged in a two-dimensional honeycomb
+                        lattice.</p>
+                    <a href="https://en.wikipedia.org/wiki/Graphene" target="_blank" class="learn-link">Access
+                        Database</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel: Weaving Matrix -->
+        <div class="panel-center">
+            <div id="matrix-container">
+                <canvas id="weaving-canvas" width="400" height="400"></canvas>
+                <div id="scan-line"></div>
+            </div>
+            <div class="controls-area">
+                <button id="weave-btn" class="main-action-btn">INITIATE WEAVE</button>
+                <button id="reset-btn" class="secondary-action-btn">RESET MATRIX</button>
+            </div>
+            <div id="feedback-msg">Select lattice pattern and initiate weave...</div>
+        </div>
+
+        <!-- Right Panel: Material Analysis -->
+        <div class="panel-right">
+            <div class="panel-header">Analysis</div>
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <div class="a-label">Weight</div>
+                    <div class="a-value" id="weight-display">--</div>
+                </div>
+                <div class="analysis-item">
+                    <div class="a-label">Flexibility</div>
+                    <div class="a-value" id="flex-display">--</div>
+                </div>
+            </div>
+            <div class="log-console" id="system-log">
+                <div class="log-line">System initialized...</div>
+                <div class="log-line">Nanobots standby...</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Fabrication Complete</h2>
+            <div id="result-icon">🛡️</div>
+            <p id="result-text">Optimal lattice structure achieved.</p>
+            <div id="result-reward">Rating: S-Class</div>
+            <button id="continue-btn" class="main-action-btn">NEXT PROTOTYPE</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
