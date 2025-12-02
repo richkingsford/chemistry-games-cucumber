@@ -3,44 +3,112 @@
 
 <head>
     <meta charset="UTF-8">
-    max-width: 100%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Games - Smoke</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #061019;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    #homepage-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    }
+        #game-selector {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    #click-grid {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    }
+        #click-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            max-height: 1200px;
+        }
 
-    .grid-item {
-    cursor: pointer;
-    /* border: 1px solid rgba(255, 255, 255, 0.1); Debugging border */
-    transition: background-color 0.2s;
-    }
+        .grid-item {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: transform 0.2s;
+            border-radius: 30px;
+            /* Match icon rounding */
+            margin: 1rem;
+            /* Added margin as requested */
+        }
 
-    .grid-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    }
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            max-width: 250px;
+            /* Adjust based on preference */
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            /* Prevent jitter on hover */
+        }
+
+        /* Highlight on hover */
+        .grid-item:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
 
 <body>
 
     <div id="game-selector">
-        <img id="homepage-img" src="homepage_bg.jpg" alt="Chemistry Games Menu">
-    </div>
+        <div id="click-grid">
+            <!-- Top Row -->
+            <a href="viral-hunter/index.html" class="grid-item" title="Viral Hunter">
+                <img src="assets/icon_viral.png" alt="Viral Hunter">
+            </a>
+            <a href="battery-baron/index.html" class="grid-item" title="Battery Baron">
+                <img src="assets/icon_battery.png" alt="Battery Baron">
+            </a>
+            <a href="cultured-chef/index.html" class="grid-item" title="Cultured Chef">
+                <img src="assets/icon_cultured.png" alt="Cultured Chef">
+            </a>
+
+            <!-- Middle Row -->
+            <a href="carbon-alchemist/index.html" class="grid-item" title="Carbon Alchemist">
+                <img src="assets/icon_carbon.png" alt="Carbon Alchemist">
+            </a>
+            <a href="scent-designer/index.html" class="grid-item" title="Scent Designer">
+                <img src="assets/icon_scent.png" alt="Scent Designer">
+            </a>
+            <div class="grid-item" title="Bio-Hacker (Coming Soon)">
+                <img src="assets/icon_bio.png" alt="Bio-Hacker">
+            </div>
+
+            <!-- Bottom Row -->
+            <div class="grid-item" title="Aqua Purifier (Coming Soon)">
+                <img src="assets/icon_aqua.png" alt="Aqua Purifier">
+            </div>
+            <div class="grid-item" title="Nano-Weaver (Coming Soon)">
+                <img src="assets/icon_nano.png" alt="Nano-Weaver">
+            </div>
+            <div class="grid-item" title="Rocket Fueler (Coming Soon)">
+                <img src="assets/icon_rocket.png" alt="Rocket Fueler">
+            </div>
+        </div>
     </div>
 
 </body>

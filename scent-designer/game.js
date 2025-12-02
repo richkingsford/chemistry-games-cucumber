@@ -7,20 +7,20 @@ const state = {
 
 const ingredients = {
     esters: [
-        { id: 'isoamyl_acetate', name: 'Isoamyl Acetate', note: 'top', desc: 'Banana / Pear', cost: 50, type: 'Ester' },
-        { id: 'ethyl_butyrate', name: 'Ethyl Butyrate', note: 'top', desc: 'Pineapple', cost: 60, type: 'Ester' },
-        { id: 'benzyl_acetate', name: 'Benzyl Acetate', note: 'mid', desc: 'Jasmine / Floral', cost: 120, type: 'Ester' }
+        { id: 'isoamyl_acetate', name: 'Isoamyl Acetate', note: 'top', desc: 'Banana / Pear', cost: 50, type: 'Ester', link: 'https://en.wikipedia.org/wiki/Isoamyl_acetate' },
+        { id: 'ethyl_butyrate', name: 'Ethyl Butyrate', note: 'top', desc: 'Pineapple', cost: 60, type: 'Ester', link: 'https://en.wikipedia.org/wiki/Ethyl_butyrate' },
+        { id: 'benzyl_acetate', name: 'Benzyl Acetate', note: 'mid', desc: 'Jasmine / Floral', cost: 120, type: 'Ester', link: 'https://en.wikipedia.org/wiki/Benzyl_acetate' }
     ],
     aldehydes: [
-        { id: 'c8_aldehyde', name: 'Octanal (C8)', note: 'top', desc: 'Waxy / Citrus', cost: 80, type: 'Aldehyde' },
-        { id: 'c10_aldehyde', name: 'Decanal (C10)', note: 'top', desc: 'Orange Peel', cost: 90, type: 'Aldehyde' },
-        { id: 'c12_aldehyde', name: 'Lauric Aldehyde', note: 'mid', desc: 'Fresh / Metallic', cost: 150, type: 'Aldehyde' }
+        { id: 'c8_aldehyde', name: 'Octanal (C8)', note: 'top', desc: 'Waxy / Citrus', cost: 80, type: 'Aldehyde', link: 'https://en.wikipedia.org/wiki/Octanal' },
+        { id: 'c10_aldehyde', name: 'Decanal (C10)', note: 'top', desc: 'Orange Peel', cost: 90, type: 'Aldehyde', link: 'https://en.wikipedia.org/wiki/Decanal' },
+        { id: 'c12_aldehyde', name: 'Lauric Aldehyde', note: 'mid', desc: 'Fresh / Metallic', cost: 150, type: 'Aldehyde', link: 'https://en.wikipedia.org/wiki/Dodecanal' }
     ],
     terpenes: [
-        { id: 'limonene', name: 'Limonene', note: 'top', desc: 'Lemon / Citrus', cost: 40, type: 'Terpene' },
-        { id: 'linalool', name: 'Linalool', note: 'mid', desc: 'Lavender / Spice', cost: 100, type: 'Terpene' },
-        { id: 'santalol', name: 'Santalol', note: 'base', desc: 'Sandalwood', cost: 300, type: 'Terpene' },
-        { id: 'vanillin', name: 'Vanillin', note: 'base', desc: 'Vanilla', cost: 200, type: 'Aldehyde' }
+        { id: 'limonene', name: 'Limonene', note: 'top', desc: 'Lemon / Citrus', cost: 40, type: 'Terpene', link: 'https://en.wikipedia.org/wiki/Limonene' },
+        { id: 'linalool', name: 'Linalool', note: 'mid', desc: 'Lavender / Spice', cost: 100, type: 'Terpene', link: 'https://en.wikipedia.org/wiki/Linalool' },
+        { id: 'santalol', name: 'Santalol', note: 'base', desc: 'Sandalwood', cost: 300, type: 'Terpene', link: 'https://en.wikipedia.org/wiki/Santalol' },
+        { id: 'vanillin', name: 'Vanillin', note: 'base', desc: 'Vanilla', cost: 200, type: 'Aldehyde', link: 'https://en.wikipedia.org/wiki/Vanillin' }
     ]
 };
 
@@ -77,10 +77,17 @@ function renderCategory(id, items) {
         const btn = document.createElement('div');
         btn.className = 'chem-btn';
         btn.innerHTML = `
-            <span>${item.name}</span>
-            <span class="chem-cost">$${item.cost}</span>
+            <div class="chem-info">
+                <span>${item.name}</span>
+                <span class="chem-cost">$${item.cost}</span>
+            </div>
+            <a href="${item.link}" target="_blank" class="learn-icon" title="Learn more about ${item.name}">📜</a>
         `;
-        btn.onclick = () => toggleIngredient(item, btn);
+        btn.onclick = (e) => {
+            if (e.target.tagName !== 'A') {
+                toggleIngredient(item, btn);
+            }
+        };
         container.appendChild(btn);
     });
 }
