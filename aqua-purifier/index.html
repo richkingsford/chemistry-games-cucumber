@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Aqua Purifier - Chemistry Games</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="game-title">THE AQUA PURIFIER</div>
+        <div class="hud-stats">
+            <div class="stat-box">
+                <div class="stat-label">Purity Level</div>
+                <div class="stat-value" id="purity-display">0%</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Bottle Value</div>
+                <div class="stat-value" id="value-display">$0.00</div>
+            </div>
+        </div>
+        <a href="../index.html" class="exit-btn">EXIT</a>
+    </header>
+
+    <main>
+        <!-- Left Panel: Input Source -->
+        <div class="panel-left">
+            <div class="panel-header">Water Source</div>
+            <div class="source-list" id="source-list">
+                <!-- Populated by JS -->
+            </div>
+            <div class="info-card">
+                <div class="card-header">Filtration Fact</div>
+                <div class="card-body">
+                    <p id="fact-text">Select a water source to begin purification.</p>
+                    <a href="#" target="_blank" class="learn-link" style="display: none;">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel: Purification System -->
+        <div class="panel-center">
+            <div id="system-container">
+                <div class="tank" id="tank-input">
+                    <div class="water dirty"></div>
+                    <div class="tank-label">Input</div>
+                </div>
+                <div class="pipe horizontal"></div>
+                <div class="processor" id="proc-filter">
+                    <div class="proc-icon">🕸️</div>
+                    <div class="proc-label">Filter</div>
+                </div>
+                <div class="pipe horizontal"></div>
+                <div class="processor" id="proc-distill">
+                    <div class="proc-icon">⚗️</div>
+                    <div class="proc-label">Distill</div>
+                </div>
+                <div class="pipe horizontal"></div>
+                <div class="processor" id="proc-uv">
+                    <div class="proc-icon">☀️</div>
+                    <div class="proc-label">UV</div>
+                </div>
+                <div class="pipe horizontal"></div>
+                <div class="tank" id="tank-output">
+                    <div class="water clean"></div>
+                    <div class="tank-label">Output</div>
+                </div>
+            </div>
+            <div class="controls-area">
+                <button id="process-btn" class="main-action-btn" disabled>START PROCESS</button>
+                <button id="reset-btn" class="secondary-action-btn">FLUSH SYSTEM</button>
+            </div>
+            <div id="feedback-msg">Select a water source...</div>
+        </div>
+
+        <!-- Right Panel: Bottling -->
+        <div class="panel-right">
+            <div class="panel-header">Production Line</div>
+            <div id="bottle-preview">
+                <div class="bottle-icon">🍾</div>
+                <div class="bottle-label">Empty</div>
+            </div>
+            <button id="bottle-btn" class="main-action-btn" disabled>BOTTLE IT</button>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Batch Complete!</h2>
+            <div id="result-icon">💧</div>
+            <p id="result-text">You have produced a batch of premium water.</p>
+            <div id="result-reward">Value: $50.00</div>
+            <button id="continue-btn" class="main-action-btn">NEXT BATCH</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
