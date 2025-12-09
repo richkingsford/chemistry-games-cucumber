@@ -91,7 +91,7 @@ class Game {
         this.isPlaying = false;
         this.level = 1;
         this.currentTarget = null; // The active binding pocket on the virus
-        this.builtMolecule = { top: null, right: null, bottom: null, left: null };
+        this.builtMolecule = { center: null };
 
         // DOM Elements
         this.timerEl = document.getElementById('timer');
@@ -295,7 +295,8 @@ class Game {
 
         // Visuals
         slot.textContent = group.icon;
-        slot.className = `slot ${slot.dataset.pos} ${group.prop.color}`;
+        // Keep 'scaffold' class so layout remains correct, remove others first
+        slot.className = `slot scaffold ${slot.dataset.pos} ${group.prop.color}`;
         slot.dataset.groupId = groupId;
 
         // Logic
@@ -303,8 +304,8 @@ class Game {
     }
 
     unequipGroup(slot) {
-        slot.textContent = '';
-        slot.className = `slot ${slot.dataset.pos}`;
+        slot.innerHTML = 'DRUG<br>CORE';
+        slot.className = `slot scaffold ${slot.dataset.pos}`;
         delete slot.dataset.groupId;
         this.builtMolecule[slot.dataset.pos] = null;
     }
@@ -323,14 +324,13 @@ class Game {
         let hasMatch = false;
         let hasClash = false;
 
-        Object.values(this.builtMolecule).forEach(group => {
-            if (group) {
-                if (group.prop.id === neededPropId) hasMatch = true;
-                if (group.prop.id === targetPropId && targetPropId !== 'hydro' && targetPropId !== 'polar') {
-                    hasClash = true;
-                }
+        const group = this.builtMolecule.center;
+        if (group) {
+            if (group.prop.id === neededPropId) hasMatch = true;
+            if (group.prop.id === targetPropId && targetPropId !== 'hydro' && targetPropId !== 'polar') {
+                hasClash = true;
             }
-        });
+        }
 
         if (hasMatch && !hasClash) {
             this.success();

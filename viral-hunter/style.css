@@ -200,38 +200,56 @@ body {
     font-size: 0.9rem;
 }
 
-.scaffold {
+#scaffold {
     position: relative;
-    width: 150px;
-    height: 150px;
-    background: rgba(255, 255, 255, 0.1);
+    width: 180px;
+    height: 180px;
+    min-width: 180px;
+    min-height: 180px;
+    flex-shrink: 0;
+    background: rgba(0, 243, 255, 0.2);
+    border: 4px dashed rgba(255, 255, 255, 0.8);
     border-radius: 50%;
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
     margin-bottom: 1rem;
-}
-
-.scaffold-core {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     color: #fff;
     text-align: center;
     font-weight: bold;
+    transition: all 0.2s;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+    z-index: 50;
+}
+
+.scaffold.hovered {
+    border-color: var(--neon-blue);
+    background: rgba(0, 243, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 30px var(--neon-blue);
+}
+
+/* When an icon is dropped */
+/* When an icon is dropped */
+.scaffold[data-group-id] {
+    font-size: 80px;
+    /* Large icon */
+    border-style: solid;
+    border-color: var(--neon-blue);
+    text-shadow: 0 0 20px currentColor;
 }
 
 /* Functional Groups */
 .func-group {
     width: 80px;
-    /* Increased to 80px */
     height: 80px;
-    /* Increased to 80px */
     border-radius: 50%;
-    /* Ensure circular shape */
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 36px;
-    /* Increased font size */
     cursor: grab;
     border: 2px solid transparent;
     transition: transform 0.2s;
@@ -239,53 +257,6 @@ body {
     position: relative;
     flex-shrink: 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    /* Add depth */
-}
-
-.slot {
-    position: absolute;
-    width: 60px;
-    /* Increased size */
-    height: 60px;
-    /* Increased size */
-    border: 1px dashed #666;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s;
-    z-index: 10;
-}
-
-.slot.hovered {
-    border-color: var(--neon-blue);
-    background: rgba(0, 243, 255, 0.2);
-    transform: scale(1.1);
-}
-
-.slot-top {
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.slot-bottom {
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.slot-left {
-    left: -30px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.slot-right {
-    right: -30px;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 /* Inventory */
