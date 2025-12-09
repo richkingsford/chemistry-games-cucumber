@@ -1,5 +1,4 @@
-const oxidizerSlider = document.getElementById('oxidizer-slider');
-const fuelSlider = document.getElementById('fuel-slider');
+const mixSlider = document.getElementById('mix-slider');
 const oxidizerVal = document.getElementById('oxidizer-val');
 const fuelVal = document.getElementById('fuel-val');
 const igniteBtn = document.getElementById('ignite-btn');
@@ -53,15 +52,10 @@ function startFactRotation() {
 }
 
 function setupListeners() {
-    oxidizerSlider.oninput = () => {
-        oxidizerVal.textContent = `${oxidizerSlider.value}%`;
-        // Auto-adjust fuel to sum to 100? No, let them mess it up.
-        // Actually, let's make them independent but warn if sum != 100?
-        // Simpler: Just independent.
-    };
-
-    fuelSlider.oninput = () => {
-        fuelVal.textContent = `${fuelSlider.value}%`;
+    mixSlider.oninput = () => {
+        const val = mixSlider.value;
+        oxidizerVal.textContent = `${val}%`;
+        fuelVal.textContent = `${100 - val}%`;
     };
 
     igniteBtn.onclick = ignite;
@@ -79,33 +73,26 @@ function setupListeners() {
 }
 
 function updateSliders() {
-    oxidizerVal.textContent = `${oxidizerSlider.value}%`;
-    fuelVal.textContent = `${fuelSlider.value}%`;
+    const val = mixSlider.value;
+    oxidizerVal.textContent = `${val}%`;
+    fuelVal.textContent = `${100 - val}%`;
 }
 
 function ignite() {
     if (isLaunched) return;
 
-    const ox = parseInt(oxidizerSlider.value);
-    const fuel = parseInt(fuelSlider.value);
+    const ox = parseInt(mixSlider.value);
+    const fuel = 100 - ox;
 
-    // Check Total Volume
-    if (ox + fuel > 100) {
-        log("ERROR: Tank Overpressure! Reduce volume.");
-        feedbackMsg.textContent = "WARNING: Tank Overpressure!";
-        return;
-    }
-
-    if (ox + fuel < 50) {
-        log("ERROR: Insufficient propellant mass.");
-        feedbackMsg.textContent = "WARNING: Tank Underfilled!";
-        return;
-    }
+    /*
+    // Check Total Volume - Not needed for single slider
+    if (ox + fuel > 100) { ... }
+    if (ox + fuel < 50) { ... }
+    */
 
     isLaunched = true;
     igniteBtn.disabled = true;
-    oxidizerSlider.disabled = true;
-    fuelSlider.disabled = true;
+    mixSlider.disabled = true;
 
     // Calculate Efficiency
     const oxDiff = Math.abs(ox - IDEAL_OX);
@@ -163,8 +150,7 @@ function launchFail(error) {
         flame.classList.remove('active');
         isLaunched = false;
         igniteBtn.disabled = false;
-        oxidizerSlider.disabled = false;
-        fuelSlider.disabled = false;
+        mixSlider.disabled = false;
     }, 2000);
 }
 
@@ -205,12 +191,10 @@ function reset() {
     document.body.classList.remove('shake');
 
     igniteBtn.disabled = false;
-    oxidizerSlider.disabled = false;
-    fuelSlider.disabled = false;
+    mixSlider.disabled = false;
 
     // Reset sliders to default
-    oxidizerSlider.value = 50;
-    fuelSlider.value = 50;
+    mixSlider.value = 50;
     updateSliders();
 }
 

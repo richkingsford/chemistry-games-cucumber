@@ -32,18 +32,18 @@
         <div class="panel-left">
             <div class="panel-header">Propellant Mix</div>
             <div class="component-group">
-                <div class="component-label">Oxidizer (Liquid Oxygen)</div>
+                <div class="component-label">Mix Ratio (Oxidizer / Fuel)</div>
                 <div class="slider-container">
-                    <input type="range" min="0" max="100" value="50" class="slider" id="oxidizer-slider">
-                    <span class="slider-value" id="oxidizer-val">50%</span>
+                    <input type="range" min="0" max="100" value="50" class="slider" id="mix-slider">
+                    <div class="ratio-display">
+                        <span id="oxidizer-val">50% Ox</span> / <span id="fuel-val">50% Fuel</span>
+                    </div>
                 </div>
             </div>
-            <div class="component-group">
-                <div class="component-label">Fuel (RP-1 Kerosene)</div>
-                <div class="slider-container">
-                    <input type="range" min="0" max="100" value="50" class="slider" id="fuel-slider">
-                    <span class="slider-value" id="fuel-val">50%</span>
-                </div>
+
+            <div class="controls-area">
+                <button id="ignite-btn" class="main-action-btn">IGNITE</button>
+                <button id="reset-btn" class="secondary-action-btn">RESET</button>
             </div>
             <div class="info-card">
                 <div class="card-header">Combustion Fact</div>
@@ -71,22 +71,15 @@
             <div class="log-console" id="mission-log">
                 <div class="log-line">System initialized...</div>
                 <div class="log-line">Awaiting ignition sequence...</div>
+                <div id="feedback-msg">Adjust mixture and ignite...</div>
             </div>
         </div>
 
-        <!-- Right Panel: Engine - Swapped -->
+        <!-- Right Panel: Rocket Engine Visual -->
         <div class="panel-right">
             <div id="engine-container">
-                <div class="rocket-body">
-                    <div class="nozzle"></div>
-                    <div class="flame" id="flame"></div>
-                </div>
+                <div id="flame" class="flame"></div>
             </div>
-            <div class="controls-area">
-                <button id="ignite-btn" class="main-action-btn">IGNITE ENGINE</button>
-                <button id="reset-btn" class="secondary-action-btn">RESET</button>
-            </div>
-            <div id="feedback-msg">Adjust mixture and ignite...</div>
         </div>
     </main>
 
